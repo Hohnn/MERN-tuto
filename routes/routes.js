@@ -1,4 +1,6 @@
 import express from 'express'
+import addSignup from '../controllers/hostControllers.js'
+import passport from 'passport';
 import { catchErrors } from '../helpers.js'
 import {
   getRooms,
@@ -25,6 +27,16 @@ router.post('/api/rooms', catchErrors(addRoom))
 router.patch('/api/rooms/:id', catchErrors(updateRoom))
 
 router.delete('/api/rooms/:id', catchErrors(deleteRoom))
+
+//authentification
+router.post('/signup', 
+passport.authenticate('signup', { session: false }),
+    async (req, res, next) => {
+    res.json({
+        message: 'Signup success',
+        user: req.user
+    })
+    })
 
 router.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
