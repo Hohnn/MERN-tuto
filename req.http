@@ -2,11 +2,11 @@ GET http://localhost:5000/api/rooms
 
 ###
 
-POST http://localhost:5000/api/rooms HTTP/1.1
+POST http://localhost:5000/private/api/rooms?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxZDVjOTc0ZjU1YmIwNDg4YzlmNmYwYSIsImVtYWlsIjoidGVzdDJAdGVzdC5jb20ifSwiaWF0IjoxNjQxNDczNTgxfQ.hEY5lXe5EXMitNVT0c9zdesYW3v7XMbVuYeY-Tst71c HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Basic"
+  "name": "Secret room"
 }
 
 ###
@@ -31,4 +31,19 @@ content-type: application/json
   "email": "test2@test.com",
   "password": "test"
 }
+
+###
+
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+  "email": "test2@test.com",
+  "password": "test"
+}
+
+###
+
+GET http://localhost:5000/private/secret?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxZDVjOTc0ZjU1YmIwNDg4YzlmNmYwYSIsImVtYWlsIjoidGVzdDJAdGVzdC5jb20ifSwiaWF0IjoxNjQxNDczNTgxfQ.hEY5lXe5EXMitNVT0c9zdesYW3v7XMbVuYeY-Tst71c
+
 
